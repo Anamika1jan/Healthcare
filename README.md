@@ -1,15 +1,11 @@
-Perfect 👍 I’ll give you a **full GitHub-ready README.md** that looks professional and detailed, so you can just paste it into your repo.
 
-Here’s the complete **project description**:
-
----
 
 # 🏥 Healthcare Data Analysis using SQL
 
 ## 📌 Project Overview
 
 This project is a **SQL-based data analysis** of healthcare patient records.
-The dataset is intentionally **messy** with duplicates, missing values, and inconsistent formats, to simulate **real-world data cleaning and analysis challenges**.
+The dataset is intentionally messy with duplicates, missing values, and inconsistent formats, to simulate *real-world data cleaning and analysis challenges*.
 
 The project demonstrates how to:
 
