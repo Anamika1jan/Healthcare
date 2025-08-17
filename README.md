@@ -34,84 +34,48 @@ The dataset is a **synthetic patient dataset** containing hospital admission det
 
 ---
 
-## ⚙️ Workflow
+⚙️ Steps Performed
+🔹 1. Import Data into MySQL
 
-### 🔹 Step 1: Import Data into MySQL
+Created a staging table to load raw CSV data.
 
-* Created a **staging table** to store raw messy data.
-* Used `LOAD DATA LOCAL INFILE` to load CSV file into MySQL.
+Used LOAD DATA LOCAL INFILE to import messy data.
 
-### 🔹 Step 2: Data Cleaning
+🔹 2. Data Cleaning
 
 * Removed rows with missing or invalid `Patient_ID`.
 * Handled missing values in `Diagnosis`, `Discharge_Date`, and `Bill_Amount`.
 * Removed duplicate `Patient_ID` using `ROW_NUMBER()`.
 * Standardized inconsistent values (`Gender`, date formats, etc.).
 
-### 🔹 Step 3: Data Analysis
+🔹 3. SQL Analysis Performed
 
-Performed SQL queries to analyze patient demographics, hospital stays, diagnoses, and billing.
+👨‍⚕️ Patient Demographics
 
----
+* Total patients
+* Gender distribution
+* Age statistics & brackets
 
-## 📊 Example SQL Queries
+🦠 Diagnosis Insights
 
-### 👨‍⚕️ Patient Demographics
+* Most common diagnoses
+* Patients per disease
+* Missing diagnosis records
 
-```sql
--- Total number of patients
-SELECT COUNT(*) AS total_patients
-FROM clean_healthcare;
+🏥 Hospital Stay Analysis
 
--- Gender distribution
-SELECT Gender, COUNT(*) AS count
-FROM clean_healthcare
-GROUP BY Gender;
-```
+* Average length of stay
+* Longest hospital stay
+* Admissions trend by month
+* Doctor with the maximum patients
 
-### 🦠 Diagnosis Insights
+💰 Financial Analysis
 
-```sql
--- Most common diagnosis
-SELECT Diagnosis, COUNT(*) AS count
-FROM clean_healthcare
-GROUP BY Diagnosis
-ORDER BY count DESC
-LIMIT 1;
-```
+* Total hospital revenue
+* Average bill per patient
+* Top 3 doctors by billing amount
+* Billing by diagnosis
 
-### 🏥 Hospital Stay Analysis
-
-```sql
--- Average length of hospital stay
-SELECT AVG(DATEDIFF(Discharge_Date, Admission_Date)) AS avg_stay_days
-FROM clean_healthcare
-WHERE Discharge_Date IS NOT NULL;
-
--- Longest hospital stay
-SELECT Patient_ID, Name, DATEDIFF(Discharge_Date, Admission_Date) AS stay_days
-FROM clean_healthcare
-WHERE Discharge_Date IS NOT NULL
-ORDER BY stay_days DESC
-LIMIT 1;
-```
-
-### 💰 Financial Analysis
-
-```sql
--- Total hospital revenue
-SELECT SUM(Bill_Amount) AS total_revenue
-FROM clean_healthcare;
-
--- Top 3 doctors by billing
-SELECT Doctor_Name, SUM(Bill_Amount) AS total_billing
-FROM clean_healthcare
-GROUP BY Doctor_Name
-ORDER BY total_billing DESC
-LIMIT 3;
-```
-
----
 
 ## 🚀 Tech Stack
 
